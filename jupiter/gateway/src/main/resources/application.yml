@@ -1,0 +1,62 @@
+# The port this application will use to listen for request
+server:
+  port: 8765
+  # This setting doesn't have any effects in Reactive WebFlux environment.
+  # We're only using it to implement the BundledRequestController.
+  servlet:
+    context-path: /jupiter
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetchRegistry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application.name: gateway
+  
+  cloud:
+    gateway:
+      # Enable looking up for microservice by ID via Eureka
+      discovery.locator:
+        enabled: true
+        lowerCaseServiceId: true
+      
+      # CORS configuration for front-end testing
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: false
+
+      routes:
+        - id: keycloak-route
+          predicates:
+            - Path=/*/api/keycloak/**
+          filters:
+            - StripPrefix=1
+          uri: "lb://keycloak"
+hystrix:
+  command:
+    # Default configurations for ALL endpoints
+    default:
+      execution:
+        isolation:
+          thread:
+            # Make sure Hystrix timeout is larger than Ribbon timeout 
+            # @see https://github.com/spring-cloud/spring-cloud-netflix/issues/2606
+            timeoutInMilliseconds: 1000000
+    app-config-fallback:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+  

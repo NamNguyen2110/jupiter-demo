@@ -1,0 +1,18 @@
+spring:
+  application.name: eureka
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    # Prevent the Eureka server from registering with itself
+    register-with-eureka: false
+    fetch-registry: false
+    healthcheck:
+      enabled: true
+  server:
+    eviction-interval-timer-in-ms: 1000
