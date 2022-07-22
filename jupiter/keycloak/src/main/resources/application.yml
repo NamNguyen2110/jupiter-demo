@@ -1,5 +1,6 @@
 server:
   port: 8100
+---
 eureka:
   instance:
     prefer-ip-address: true
@@ -8,6 +9,7 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+---
 spring:
   application:
     name: keycloak
@@ -44,3 +46,14 @@ spring:
     open-in-view: off
     hibernate:
       ddl-auto: update
+---
+keycloak-client:
+  client-id: cmc-resource-mngt
+  client-secret: Ixh7s4oFZmTuIuiAmiB1sMZiStM5grAm
+---
+keycloak:
+  realm: resource-mngt
+  auth-server-url: http://192.168.66.41:8180/auth
+  ssl-required: external
+  resource: cmc-resource-mngt
+  bearer-only: true

@@ -7,5 +7,4 @@ import java.time.LocalDateTime;
 @UtilityClass
 public class DateUtils {
 
-    public final static LocalDateTime now = LocalDateTime.now();
 }

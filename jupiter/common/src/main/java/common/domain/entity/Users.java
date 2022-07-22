@@ -1,5 +1,7 @@
 package common.domain.entity;
 
+import common.domain.converter.GenderEnumConverter;
+import common.domain.enums.Gender;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,4 +21,6 @@ public class Users implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
     private String usersId;
+    @Convert(converter = GenderEnumConverter.class)
+    private Gender gender;
 }

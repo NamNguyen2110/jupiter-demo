@@ -16,12 +16,20 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
+        <keycloak-spring-boot-starter.version>15.0.2</keycloak-spring-boot-starter.version>
+        <common.version>0.0.1-SNAPSHOT</common.version>
+        <keycloak-admin-client.version>17.0.0</keycloak-admin-client.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-admin-client</artifactId>
+            <version>${keycloak-admin-client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
             <artifactId>keycloak-spring-boot-starter</artifactId>
-            <version>15.0.2</version>
+            <version>${keycloak-spring-boot-starter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -38,7 +46,7 @@
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${common.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
