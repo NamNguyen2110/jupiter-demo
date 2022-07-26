@@ -40,7 +40,7 @@ spring:
       routes:
         - id: keycloak-route
           predicates:
-            - Path=/*/api/keycloak/**
+            - Path=/*/keycloak/**
           filters:
             - StripPrefix=1
           uri: "lb://keycloak"
